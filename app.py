@@ -10,6 +10,7 @@ vid = StreamWatcher("rtsp://localhost:8554/live.sdp", 1)
 def default():
     if request.method == "POST":
         if request.form.get("reconnect") != None:
+            #This should try reconnecting to the stream on the assumption that it hasn't connected succesfully
             return render_template("index.html", img_url=get_image())
         elif request.form.get("request") != None:
             return  render_template("index.html", img_url=get_image())

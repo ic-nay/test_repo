@@ -22,6 +22,6 @@ class StreamWatcher():
             return [False, "Failed to connect to camera {self.camera_id}"]
         
         ret, buffer_img = cv2.imencode('.jpg', frame)
-        data = base64.b64encode(buffer_img)
+        data = base64.b64encode(buffer_img).decode('utf-8')
         
         return [True, data]
