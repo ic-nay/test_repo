@@ -1,4 +1,5 @@
 import cv2
+import base64
 
 class StreamWatcher():
     def __init__(self, stream_url, camera_id):
@@ -20,4 +21,7 @@ class StreamWatcher():
             print(f"⚠️ Camera {self.camera_id} failed")
             return [False, "Failed to connect to camera {self.camera_id}"]
         
-        return [True, frame]
+        ret, buffer_img = cv2.imencode('.jpg', frame)
+        data = base64.b64encode(buffer_img)
+        
+        return [True, data]
